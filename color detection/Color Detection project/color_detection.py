@@ -6,16 +6,14 @@ import pandas as pd
 img_path = r'C:\Users\Durgesh\PycharmProjects\color detection\Color Detection project\colorpic.jpg'
 img = cv2.imread(img_path)
 
-# declaring global variables (are used later on)
+
 clicked = False
 r = g = b = x_pos = y_pos = 0
 
-# Reading csv file with pandas and giving names to each column
 index = ["color", "color_name", "hex", "R", "G", "B"]
 csv = pd.read_csv('colors.csv', names=index, header=None)
 
 
-# function to calculate minimum distance from all colors and get the most matching color
 def get_color_name(R, G, B):
     minimum = 10000
     for i in range(len(csv)):
@@ -26,7 +24,6 @@ def get_color_name(R, G, B):
     return cname
 
 
-# function to get x,y coordinates of mouse double click
 def draw_function(event, x, y, flags, param):
     if event == cv2.EVENT_LBUTTONDBLCLK:
         global b, g, r, x_pos, y_pos, clicked
@@ -62,7 +59,7 @@ while True:
 
         clicked = False
 
-    # Break the loop when user hits 'esc' key
+    
     if cv2.waitKey(20) & 0xFF == 27:
         break
 
